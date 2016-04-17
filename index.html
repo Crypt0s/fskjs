@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>FSK.js - ASCII to FSK!</title>
+        <script type="text/javascript" src="raphael.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+        <style type="text/css">
+            #canvas_container {
+                width: 500px;
+                border: 1px solid #aaa;
+            }
+        </style>
+
+    </head>
+    <body>
+      Data: <input type="text" value="Hello, World!" id="fskdata"></br>
+      Baud Rate: <input type='text' id="baud" value='5'/></br>
+      Deviation: <input type='text' id='deviation' value='5'/></br>
+      <input type="submit" value="Submit" onclick="javascript:generate()"></br></br>
+      Binary Representation:</br>
+      <div id="binary"></div></br>
+      Frequency Shift Keying Representation:</div></br>
+      <div id="canvas_container"></div>
+
+    </body>
+</html>

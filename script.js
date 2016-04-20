@@ -1,3 +1,35 @@
+function toDegrees(x){
+  x = x * (180/Math.PI)
+  return x
+}
+
+function simplesine(){
+  var counter = 0;
+  // 100 iterations
+  var increase = Math.PI * 2 / 100;
+
+  var points = []
+  for ( i = 0; i <= 1; i += .01 ) {
+    x = 50 * i;
+    y = 250 + 50 * Math.sin( counter ) / 2 + 0.5;
+    counter += increase;
+    console.log('(' + x + ', ' + y + ')')
+    points.push([x,y])
+  }
+  return points
+}
+
+function drawSine(){
+  var points = simplesine()
+  var paper = new Raphael(document.getElementById('canvas_container'), 500, 500);
+
+  //plot that stuff
+  for (i=0; i<=(points.length-1); i+= 1){
+    paper.circle(points[i][0],points[i][1],5).attr('fill','red')
+  }
+}
+
+
 window.onload = function() {
     var paper = new Raphael(document.getElementById('canvas_container'), 500, 500);
     var tetronimo = paper.path("M 250 250 l 0 -50 l -50 0 l 0 -50 l -50 0 l 0 50 l -50 0 l 0 50 z");

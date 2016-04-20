@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>FSK.js - ASCII to FSK!</title>
+        <script type="text/javascript" src="raphael.min.js"></script>
+        <script type="text/javascript" src="sine.js"></script>
+        <style type="text/css">
+            #canvas_container {
+                width: 500px;
+                border: 1px solid #aaa;
+            }
+        </style>
+
+    </head>
+    <body>
+      <input type="submit" value="Submit" onclick="javascript:drawSine()"></br></br>
+
+      Sampling rate (samples per second): <input type='text' id="samps" value='5'/></br>
+      Freq (seconds): <input type="range" min="1" max="1000" step="1" id="freq" onchange="javascript:drawSine()"/></BR>
+      Y Shift: <input type="range" min="1" max="100" step="1" id="yshift" onchange="javascript:drawSine()"/></br>
+      Amplitude: <input type='text' id='amplitude' value='5'/></br>
+      Timed : <input type="range" min="1" max="1000" step="1" id="time" onchange="javascript:drawSine()"/>
+      <input type="submit" value="Submit" onclick="javascript:drawSine2()"></br></br>
+      <div id="canvas_container"></div>
+
+    </body>
+</html>

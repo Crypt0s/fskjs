@@ -50,7 +50,7 @@ function simplesine(freq, time, samp_freq, amplitude, phase, yshift){
   var points = []
   for(t = 0; t < time; t += (1.0/samp_freq)){
     var x = t
-    var y = yshift + (amplitude * Math.sin(2 * Math.PI * (1/(freq*b)) * t + phase))
+    var y = yshift + (amplitude * Math.sin(2 * Math.PI * (1/(freq)) * t + phase))
     points.push([x,y])
   }
   console.log(points.length)

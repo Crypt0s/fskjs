@@ -7,30 +7,50 @@ function toRadians(x){
   x = (Math.PI/180) * x
   return x
 }
-/*
-function simplesine(time, samples, frequency, amplitude, yshift){
-  var iterations = time
-  var points = []
 
-  for(i=0;i<iterations;i+=1){
-    var x = i
-    var y = amplitude * (Math.sin(i))
-    y = y + yshift
+
+/*
+Considerations:
+
+number of samples the frequency needs to be shifted must match baud rate (time) for each symbol
+baud = symbols/second
+
+we could make our lives much easier and say that we will lock baud to sample rate BUT
+This doesn't change that we need to keep freq. shifted as we move through the symbol
+
+the easiest would be to lock frequency to baud and sampling rate to frequency * 2
+no, because we would still need to track state across the 2 samples == better to have a function generate the required frequency deviation based on time!!!
+
+aha ok so we will simply build a t-based function which outputs deviations to freq value at set intervals!
+
+
+*/
+function modsine(freq, time, samp_freq, amplitude, phase, yshift){
+  freq = 2 * 100
+  time = 5
+  samp_freq = 100
+  amplitude = 50
+  phase = 0
+  yshift = 200
+  
+  var points = []
+  for(t = 0; t < time; t += (1.0/samp_freq)){
+    var x = t
+
+    //insert time-modulo code here to deviate frequency every X time period
+
+    var y = yshift + (amplitude * Math.sin(2 * Math.PI * (1/(freq*b)) * t + phase))
     points.push([x,y])
   }
+  console.log(points.length)
   return points
 }
-*/
 
-function simplesine(freq, time, samples){
-  var iterations = time
+function simplesine(freq, time, samp_freq, amplitude, phase, yshift){
   var points = []
-  var sps = time / time
-  for(i=0;i<time;i+=sps){
-    var x = i
-    var y = 50 * (Math.sin(toRadians(freq * i)))
-    console.log('(' + x + ', ' + y + ')')
-    y = y + 200
+  for(t = 0; t < time; t += (1.0/samp_freq)){
+    var x = t
+    var y = yshift + (amplitude * Math.sin(2 * Math.PI * (1/(freq*b)) * t + phase))
     points.push([x,y])
   }
   console.log(points.length)
@@ -39,20 +59,26 @@ function simplesine(freq, time, samples){
 
 
 function drawSine(){
-  var samples = parseInt(document.getElementById('samps').value)
+  var samples = parseFloat(document.getElementById('samps').value)
   var yshift = parseInt(document.getElementById('yshift').value)
   var amplitude = parseInt(document.getElementById('amplitude').value)
+
   var time = parseInt(document.getElementById('time').value)
+  document.getElementById('t_val').innerText = time
+
   var freq = parseInt(document.getElementById('freq').value)
+  document.getElementById('t_freq').innerText = 1/freq
   //var period = document.getElementById('period').value
 
+  var phase = parseInt(document.getElementById('phase').value)
+
   //var  = document.getElementById('')
-  var points = simplesine(freq, time, samples)
+  var points = simplesine(freq, time, samples, amplitude, phase, yshift)
   //var points = retry(yshift, amplitude, freq,period)
   var paper = new Raphael(document.getElementById('canvas_container'), 500, 500);
 
   //plot that stuff
   for (i=0; i<=(points.length-1); i+= 1){
-      paper.circle(points[i][0],points[i][1],5).attr('fill','red')
+      paper.circle(points[i][0],points[i][1],2).attr('fill','red')
   }
 }

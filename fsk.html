@@ -13,15 +13,15 @@
     </head>
     <body>
       <input type="submit" value="Submit" onclick="javascript:drawSine()"></br></br>
-      Data to Mod: <input type='text' id="data" value='1010101010101010'/></br>
+      Data to Mod: <input type='text' id="data" value='Hello, World!'/></br>
       binary: <div id='binary'></div>
-      Deviation: <input  type='text' id='deviation' value='.05'/></br>
+      Deviation: <input type="range" min="0" max="1" step='.01' id='deviation' value='.05' onchange="javascript:drawSine()"/></br>
       baud: <input type='text' id='baud' value='10'/></br>
-      Sampling rate (samples per second): <input type='text' id="samps" value='.5'/></br>
+      Sampling rate (samples per second): <input type="range" min="0" max="1" step='.1' id="samps" value='.5' onchange="javascript:drawSine()"/></br>
       Period: <input type="range" min="1" max="100" step="1" id="freq" onchange="javascript:drawSine()"/></br>
       Freq/sec: <div id='t_freq'></div></BR>
       Y Shift: <input type="range" min="1" max="100" step="1" id="yshift" onchange="javascript:drawSine()"/> </br>
-      Amplitude: <input type='text' id='amplitude' value='5'/></br>
+      Amplitude: <input type="range" min="1" max="100" step="1" id='amplitude' value='5' onchange="javascript:drawSine()"/></br>
       Phase Offset: <input type="range" min="1" max="100" step="1" id='phase' value='5' onchange="javascript:drawSine()"/></br>
       Timed : <input type="range" min="1" max="1000" step="1" id="time" onchange="javascript:drawSine()"/> - <div id='t_val'></div>
       <input type="submit" value="Submit" onclick="javascript:drawSine()"></br></br>
